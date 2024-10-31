@@ -95,7 +95,7 @@ public class StoppingDistanceCalculatorTest {
      */
     @Test
     public void testLowSpeedHandling() {
-        double speed = 0.1; // Very low speed (close to zero)
+        double speed = 0.1;
         double reactionTime = 1.5;
         double frictionCoefficient = 0.7;
         double roadGrade = 0.0;
@@ -103,6 +103,6 @@ public class StoppingDistanceCalculatorTest {
         double stoppingDistance = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficient, roadGrade);
 
         assertTrue("MR5 failed: Low speed did not result in near-zero stopping distance for " + calculator.getClass().getSimpleName(),
-                stoppingDistance < 1.0); // Expecting stopping distance to be close to zero
+                stoppingDistance < 1.0);
     }
 }
