@@ -19,7 +19,8 @@ public class StoppingDistanceCalculatorTest {
         return Arrays.asList(new Object[][]{
                 {new Calc1(), "Calc1"},
                 {new Calc2(), "Calc2"},
-                {new Calc3(), "Calc3"}
+                {new Calc3(), "Calc3"},
+                {new Calc4(), "Calc4"}
         });
     }
 
@@ -70,7 +71,7 @@ public class StoppingDistanceCalculatorTest {
     }
 
     /**
-     * MR4 Test: Road surface change
+     * MR2 Test: Road surface change
      * Changing from a high-friction road to a low-friction road should increase the stopping distance.
      */
     @Test
@@ -85,8 +86,26 @@ public class StoppingDistanceCalculatorTest {
         double frictionCoefficientLow = 0.1;
         double stoppingDistanceLow = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficientLow, roadGrade);
 
-        assertTrue("MR4 failed: Lower friction did not increase stopping distance for " + calculator.getClass().getSimpleName(),
+        assertTrue("MR2 failed: Lower friction did not increase stopping distance for " + calculator.getClass().getSimpleName(),
                 stoppingDistanceLow > stoppingDistanceHigh);
+    }
+
+    /**
+     * MR4 Test: Reaction time
+     * Faster reaction time should decrease distance
+     */
+    @Test
+    public void testReactionTime() {
+        double speed = 120;
+        double reactionTime = 0.5;
+        double reactionTime2 = 2.5;
+        double roadGrade = 0.0;
+        double frictionCoefficient = 0.7;
+        double stoppingDistanceFast = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficient, roadGrade);
+        double stoppingDistanceSlow = calculator.calculateStoppingDistance(speed, reactionTime2, frictionCoefficient, roadGrade);
+
+        assertTrue("MR4 failed: Lower reaction time did not decrease stopping distance " + calculator.getClass().getSimpleName(),
+                stoppingDistanceSlow > stoppingDistanceFast);
     }
 
     /**

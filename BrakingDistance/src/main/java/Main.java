@@ -5,10 +5,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Select calculator:");
-        System.out.println("1. Calc1 (buggy)");
-        System.out.println("2. Calc2 (buggy)");
-        System.out.println("3. Calc3 (correct)");
-        System.out.print("Enter choice (1-3): ");
+        System.out.println("1. Calc1");
+        System.out.println("2. Calc2");
+        System.out.println("3. Calc3");
+        System.out.println("4. Calc4");
+        System.out.print("Enter choice (1-4): ");
         int calculatorChoice = scanner.nextInt();
 
         StoppingDistanceCalculator calculator;
@@ -22,6 +23,9 @@ public class Main {
                 break;
             case 3:
                 calculator = new Calc3();
+                break;
+            case 4:
+                calculator = new Calc4();
                 break;
             default:
                 System.out.println("Invalid choice, defaulting to Calc1.");
