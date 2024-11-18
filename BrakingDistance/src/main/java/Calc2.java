@@ -1,14 +1,19 @@
 /***
- * Calculator with bugs injected: MR2 (road surface) and MR5 (low speed handling)
+ * Calculator with bugs injected: MR1 (road surface)
  */
 
 public class Calc2 implements StoppingDistanceCalculator {
 
     @Override
-    public double calculateStoppingDistance(double speedKmh, double reactionTime, double frictionCoefficient, double roadGrade) {
-        // Bug for MR2: Ignore friction coefficient
-        // Bug for MR5: Added a non-zero minimum distance
-        int minimumDistance = 5;
-        return 0.278 * reactionTime * speedKmh + Math.pow(speedKmh, 2) / (254 * (roadGrade + 0.5)) + minimumDistance;
+    public double calculateStoppingDistance(double speedKmh, double reactionTime, double frictionCoefficient, double roadGrade, double brakingForce) {
+        // Bug for MR1: Ignore friction coefficient, always set as 0.5
+        // s =  (0.278 × t × v) + v² / (254 × (0.5 + G)) / B;
+
+        double denominator = 254 * (0.5 + roadGrade);
+        if (Math.abs(denominator) < 1e-9) {
+            return Double.POSITIVE_INFINITY;
+        }
+
+        return (0.278 * reactionTime * speedKmh + Math.pow(speedKmh, 2) / denominator) / brakingForce;
     }
 }
