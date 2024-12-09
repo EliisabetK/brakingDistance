@@ -28,22 +28,23 @@ public class StudentTestSuite {
      * MR1 Test: Road surface change
      * Changing from a high-friction road to a low-friction road should increase the stopping distance.
      */
+
     @Test
     public void testMR1() {
         double speed = 60;
         double reactionTime = 1.5;
         double roadGrade = 0.0;
         double brakingForce = 1.0;
+        double frictionCoefficient = 0.7;
+        double c = 0.3;
 
-        double frictionCoefficientHigh = 0.7;
-        double stoppingDistanceHigh = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficientHigh, roadGrade, brakingForce);
-
-        double frictionCoefficientLow = 0.1;
-        double stoppingDistanceLow = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficientLow, roadGrade, brakingForce);
+        double stoppingDistance1 = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficient, roadGrade, brakingForce);
+        double stoppingDistance2 = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficient + c, roadGrade, brakingForce);
 
         assertTrue("MR1 failed: Lower friction did not increase stopping distance for " + calculator.getClass().getSimpleName(),
-                stoppingDistanceLow > stoppingDistanceHigh);
+                stoppingDistance1 > stoppingDistance2);
     }
 
     // Add more tests here:
+
 }
