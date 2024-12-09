@@ -7,6 +7,6 @@ public class Calc4 implements StoppingDistanceCalculator {
         if (Math.abs(denominator) < 1e-9 || Math.abs(brakingForce) < 1e-9) {
             return Double.POSITIVE_INFINITY;
         }
-        return (0.278 * reactionTime * speedKmh + speedKmh / denominator) / brakingForce;
+        return (0.278 / reactionTime * speedKmh + speedKmh / denominator) / brakingForce;
     }
 }
