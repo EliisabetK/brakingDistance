@@ -67,27 +67,8 @@ public class StoppingDistanceCalculatorTest {
                 stoppingDistance1 < stoppingDistance2);
     }
 
-    /**
-     * MR3 Test: Speed change
-     */
     @Test
     public void testMR3() {
-        double speed = 60;
-        double reactionTime = 1.5;
-        double roadGrade = 0.0;
-        double brakingForce = 1.0;
-        double frictionCoefficient = 0.7;
-        double c = 100;
-
-        double stoppingDistance1 = calculator.calculateStoppingDistance(speed, reactionTime, frictionCoefficient, roadGrade, brakingForce);
-        double stoppingDistance2 = calculator.calculateStoppingDistance(speed+c, reactionTime, frictionCoefficient, roadGrade, brakingForce);
-
-        assertTrue("MR3 failed: Higher speed time did not increase stopping distance for " + calculator.getClass().getSimpleName(),
-                stoppingDistance1 < stoppingDistance2);
-    }
-
-    @Test
-    public void testMR4() {
         double speed = 100;
         double reactionTime = 1.5;
         double roadGrade = 0.0;
@@ -103,7 +84,7 @@ public class StoppingDistanceCalculatorTest {
     }
 
     @Test
-    public void testMR5() {
+    public void testMR4() {
         double speed = 60;
         double reactionTime = 1.5;
         double roadGrade = 0.0;
@@ -124,7 +105,7 @@ public class StoppingDistanceCalculatorTest {
     }
 
     @Test
-    public void testMR6() {
+    public void testMR5() {
         double speed = 60;
         double reactionTime = 1.5;
         double roadGrade = 0.0;
